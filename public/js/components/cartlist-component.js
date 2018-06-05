@@ -2,16 +2,26 @@
 const cartList = {
   // TODO: Create a template to display all the students from this class
   template: `
-  <section ng-repeat="item in $ctrl.cartItems">
-  <label>Product: </label>
-   <input ng-model="item.product">
-  <label>: </label> 
-   <input ng-model="item.price">
-   <input ng-model="item.quantity">
-   <button ng-click="$ctrl.deleteItem(item.id);">Delete Item</button>
+  <h1>Express Shopping Cart</h1>
+
+  <section class="shoppingCart"></section>
+    <div ng-repeat="item in $ctrl.cartItems">
+      <label>Product: </label>
+      <input ng-blur="$ctrl.updateItem(item);" ng-model="item.product">
+      
+      <label>Price: </label> 
+      <input ng-blur="$ctrl.updateItem(item);" ng-model="item.price">
+      
+      <label>Quantity: </label> 
+      <input ng-blur="$ctrl.updateItem(item);" ng-model="item.quantity">
+      <button ng-click="$ctrl.deleteItem(item.id);">Delete Item</button>
+    </div>
   </section>
 
-  <button ng-click="$ctrl.addItem($ctrl.newItem);">Add Item</button>
+  <form>
+
+    <button ng-click="$ctrl.addItem($ctrl.newItem);">Add Item</button>
+  </form>
   `,
   controller: ["CartService", function(CartService) {
     const vm = this;
@@ -38,9 +48,9 @@ const cartList = {
       });
     };
 
-    vm.updateItem = (id) => {
+    vm.updateItem = (item) => {
       console.log("delete button working");
-      CartService.deleteItem(id).then((response) =>{
+      CartService.updateItem(item).then((response) =>{
         vm.cartItems = response.data;
         console.log(vm.cartItems);
       });

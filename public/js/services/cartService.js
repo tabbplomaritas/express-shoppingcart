@@ -33,7 +33,7 @@ function CartService($http) {
     
     return $http({
       method: "PUT",
-      url: "/portal/cart-items" + id, 
+      url: "/portal/cart-items/" + item.id, 
       data: item
     });
   };
@@ -41,7 +41,8 @@ function CartService($http) {
   return {
     getAllItems,
     addItem,
-    deleteItem
+    deleteItem, 
+    updateItem
   };
 };
   

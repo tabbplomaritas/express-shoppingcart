@@ -24,7 +24,7 @@ function CartService($http) {
     
     return $http({
       method: "DELETE",
-      url: "/portal/cart-items" + id
+      url: "/portal/cart-items/" + id
     });
   };
 

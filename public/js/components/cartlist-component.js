@@ -2,10 +2,8 @@
 const cartList = {
   // TODO: Create a template to display all the students from this class
   template: `
-  <h1>Express Shopping Cart</h1>
-
-  <section class="shoppingCart"></section>
-    <div ng-repeat="item in $ctrl.cartItems">
+  <section class="shoppingCart accent-color">
+    <div class="shoppingCart__item"ng-repeat="item in $ctrl.cartItems">
       <label>Product: </label>
       <input ng-blur="$ctrl.updateItem(item);" ng-model="item.product">
       
@@ -14,13 +12,22 @@ const cartList = {
       
       <label>Quantity: </label> 
       <input ng-blur="$ctrl.updateItem(item);" ng-model="item.quantity">
-      <button ng-click="$ctrl.deleteItem(item.id);">Delete Item</button>
+      <i ng-click="$ctrl.deleteItem(item.id);" class="fas fa-times-circle"></i>
     </div>
   </section>
 
-  <form>
+  <form ng-submit="$ctrl.addItem($ctrl.newItem);">
+    <h2>Add Item</h2>
+    <label>Product: </label>
+      <input ng-model="$ctrl.newItem.product">
+      
+      <label>Price: </label> 
+      <input ng-model="$ctrl.newItem.price">
+      
+      <label>Quantity: </label> 
+      <input ng-model="$ctrl.newItem.quantity">
 
-    <button ng-click="$ctrl.addItem($ctrl.newItem);">Add Item</button>
+    <button>Add Item</button>
   </form>
   `,
   controller: ["CartService", function(CartService) {

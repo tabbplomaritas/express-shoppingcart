@@ -1,0 +1,90 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+  font-family: 'Raleway', sans-serif;
+  width: 100%;
+  font-size: 1.3rem;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 700;
+  color: #009688;
+}
+
+#header__span {
+  font-style: italic;
+  color: white;
+}
+
+nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  align-content: center;
+  font-size: 3rem;
+  height: 20rem;
+}
+
+cart-list {
+width: 100%;
+height: auto;
+padding: 1rem;
+}
+
+.shoppingCart {
+  padding: 1rem;
+  margin: 0 auto;
+  height: auto;
+  width: 100%;
+  min-height: 20rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.shoppingCart__item{
+  background-color: white;
+  margin: 1rem;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: .5rem;
+  position: relative;
+}
+
+i {
+  position: absolute;
+  top: -.5rem;
+  right: -.5rem;
+  color: #FFC107;
+  font-size: 2.5rem;
+}
+
+i:hover {
+  transform: rotate(360deg);
+}
+
+
+
+.dark-primary-color    { background: #FFA000; }
+.default-primary-color { background: #FFC107; }
+.light-primary-color   { background: #FFECB3; }
+.text-primary-color    { color: #212121; }
+.accent-color          { background: #009688; }
+.primary-text-color    { color: #212121; }
+.secondary-text-color  { color: #757575; }
+.divider-color         { border-color: #BDBDBD; }

@@ -3,31 +3,46 @@ const cartList = {
   // TODO: Create a template to display all the students from this class
   template: `
   <section class="shoppingCart accent-color">
-    <div class="shoppingCart__item"ng-repeat="item in $ctrl.cartItems">
-      <label>Product: </label>
-      <input ng-blur="$ctrl.updateItem(item);" ng-model="item.product">
-      
-      <label>Price: </label> 
-      <input ng-blur="$ctrl.updateItem(item);" ng-model="item.price">
-      
-      <label>Quantity: </label> 
-      <input ng-blur="$ctrl.updateItem(item);" ng-model="item.quantity">
-      <i ng-click="$ctrl.deleteItem(item.id);" class="fas fa-times-circle"></i>
-    </div>
+  <h2 class="sectionHeader">My cart</h2>
+    <section class="shoppingCart__item"ng-repeat="item in $ctrl.cartItems">
+
+      <div class="shoppingCart__item__line">
+        <label>Product: </label>
+        <input ng-blur="$ctrl.updateItem(item);" ng-model="item.product">
+      </div>
+
+      <div class="shoppingCart__item__line">
+        <label>Price: </label> 
+        <input ng-blur="$ctrl.updateItem(item);" ng-model="item.price">
+      </div>
+      <div class="shoppingCart__item__line">
+        <label>Quantity: </label> 
+        <input ng-blur="$ctrl.updateItem(item);" ng-model="item.quantity">
+      </div> 
+        <i ng-click="$ctrl.deleteItem(item.id);" class="fas fa-times-circle deleteButton"></i>
+    </section>
   </section>
 
-  <form ng-submit="$ctrl.addItem($ctrl.newItem);">
-    <h2>Add Item</h2>
-    <label>Product: </label>
+  <form class="addItemForm dark-primary-color" ng-submit="$ctrl.addItem($ctrl.newItem);">
+    <h2 class="sectionHeader">Add Item</h2>
+    <section class="shoppingCart__item">
+
+    <div class="addItem__line">
+      <label>Product: </label>
       <input ng-model="$ctrl.newItem.product">
-      
+     </div>   
+
+    <div class="addItem__line">
       <label>Price: </label> 
       <input ng-model="$ctrl.newItem.price">
-      
+    </div> 
+
+    <div class="addItem__line">
       <label>Quantity: </label> 
       <input ng-model="$ctrl.newItem.quantity">
-
-    <button>Add Item</button>
+    </div>
+      <button><i class="fas fa-shopping-cart addButton"></i></button>
+    </section>
   </form>
   `,
   controller: ["CartService", function(CartService) {

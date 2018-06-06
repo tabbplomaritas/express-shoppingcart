@@ -83,3 +83,7 @@ const cartList = {
 angular
   .module("App")
   .component("cartList", cartList);
+
+
+
+    

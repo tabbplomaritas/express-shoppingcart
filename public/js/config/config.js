@@ -7,4 +7,5 @@ angular
       .when("/cartlist", {
         template: `<cart-list></cart-list>`
       })
+      .otherwise({redirectTo:'/cartlist'});
   });

@@ -59,6 +59,7 @@ cartRouter.delete("/cart-items/:id", (req, res) =>{
   res.send(cartItems);
 });
 
+
 cartRouter.put("/cart-items/:id", (req, res) =>{
   console.log(req.params.id);
   console.log(typeof req.params.id);

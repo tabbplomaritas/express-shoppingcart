@@ -93,6 +93,9 @@ justify-content: space-between; */
   align-items: center;
   border-radius: 1rem;
   position: relative;
+  -webkit-box-shadow: 0px 10px 42px -7px rgba(117,117,117,1);
+  -moz-box-shadow: 0px 10px 42px -7px rgba(117,117,117,1);
+  box-shadow: 0px 10px 42px -7px rgba(117,117,117,1)
 }
 .shoppingCart__item__line {
   padding: .2rem;

@@ -21,6 +21,10 @@ h1,h2,h3,h4,h5,h6 {
   color: #009688;
 }
 
+p {
+  color: #757575;
+}
+
 #header__span {
   font-style: italic;
   color: white;
@@ -43,11 +47,24 @@ cart-list {
 width: 100%;
 height: auto;
 padding: 1rem;
+
+/* display: flex;
+flex-direction: row;
+justify-content: space-between; */
 }
+
 
 .sectionHeader {
   color: #FFECB3;
   font-style: italic;
+  font-size: 3rem;
+}
+
+.grandTotal {
+  font-family: 'open sans';
+  color: #FFECB3;
+  font-size: 2rem;
+  align-self: flex-end;
 }
 
 .shoppingCart {
@@ -60,48 +77,110 @@ padding: 1rem;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  background: linear-gradient(rgba(255, 193, 7, 0.726),#009687cc), url("../images/lemons.jpg") no-repeat top; 
+  background-size: cover; 
 }
 
 .shoppingCart__item{
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.918);
   padding: 1rem;
   margin: 1rem auto;
-  width: 25rem;
+  width: 80%;
+  height: 10rem;
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
-  border-radius: .5rem;
+  border-radius: 1rem;
   position: relative;
 }
 .shoppingCart__item__line {
   padding: .2rem;
+  height: 3rem;
+  width: 80%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  align-items: center;
+  font-family: 'raleway';
+  margin-left: 1rem;
+  font-size: 2rem;
+  /* background-color: rgba(255, 255, 255, 0.3); */
 }
 
-.shoppingCart__item__line input {
-  border: none;
-}
-
-.shoppingCart__item__line label, .addItem__line label {
+.shoppingCart__item__line p:first-of-type{
   text-align: left;
-  color: #757575;
+}
+
+.itemTotal {
+  font-size: 2rem;
+  justify-self: flex-end;
+  position: absolute;
+  top: 5rem;
+  right: 2.1rem;
+  color: #FFA000;
+}
+
+
+
+.shoppingCart_quantity{
+display: flex;
+flex-direction: row;
+justify-content: space-around;
+align-items: center;
+width: 50%;
+height: 2rem;
+color: white;
+border-radius: .5rem;
+font-family: 'Open Sans', sans-serif;
+/* font-weight: 700;  */
+
+}
+
+.shoppingCart_quantity p {
+  line-height: 0rem;
+  background-color: #009688;
+  color: white;
+  border-radius: 50%;
+  height: 2rem;
+  width: 2rem;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  transition: .2s all;
+}
+
+.shoppingCart_quantity p:nth-of-type(2) {
+  border-radius: 2rem;;
   width: 7rem;
-  font-size: 1.4rem;
+}
+
+.shoppingCart_quantity p:not(:nth-of-type(2)):hover {
+  background-color: #FFA000;
+}
+
+.red{
+  background-color: red;
+}
+
+.fas {
+  padding: 1rem;
+  cursor: pointer;
 }
 
 .deleteButton {
   position: absolute;
-  top: -.5rem;
-  right: -.5rem;
+  top: -1.5rem;
+  right: -1.5rem;
   color: #FFC107;
   font-size: 2.5rem;
   transition: .3s all;
 }
 
 .deleteButton:hover {
+  color: red;
   transform: rotate(180deg);
 }
 
@@ -125,6 +204,7 @@ padding: 1rem;
 .addItem__line input {
   border: none;
   border-bottom: 1px solid #BDBDBD;
+  width: 100%;
 }
 
 input {
@@ -147,8 +227,20 @@ input:focus {
   text-shadow: 1px 1px 3px #212121;
   }
   
+.shoppingCart_product {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+
+}
 
 
+.shoppingCart_img {
+  width: 4rem;
+  height: 100%;
+}
 
 
 .dark-primary-color    { background: #FFA000; }

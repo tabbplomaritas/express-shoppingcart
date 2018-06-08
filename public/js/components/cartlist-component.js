@@ -2,24 +2,30 @@
 const cartList = {
   // TODO: Create a template to display all the students from this class
   template: `
-  <section class="shoppingCart accent-color">
+ 
+  <section class="shoppingCart">
   <h2 class="sectionHeader">My cart</h2>
+  <p class="grandTotal">Grand Total: {{$ctrl.grandTotal |currency}}</p>
     <section class="shoppingCart__item"ng-repeat="item in $ctrl.cartItems">
-
+    <div class="shoppingCart_product">
+      <img class="shoppingCart_img" src="{{item.img_url}}">
       <div class="shoppingCart__item__line">
-        <label>Product: </label>
-        <input ng-blur="$ctrl.updateItem(item);" ng-model="item.product">
+        <p>{{item.product}}</p>    
+        <p>{{item.price | currency}} each</p>
+        
       </div>
 
-      <div class="shoppingCart__item__line">
-        <label>Price: </label> 
-        <input ng-blur="$ctrl.updateItem(item);" ng-model="item.price">
-      </div>
-      <div class="shoppingCart__item__line">
-        <label>Quantity: </label> 
-        <input ng-blur="$ctrl.updateItem(item);" ng-model="item.quantity">
-      </div> 
-        <i ng-click="$ctrl.deleteItem(item.id);" class="fas fa-times-circle deleteButton"></i>
+      <i ng-click="$ctrl.deleteItem(item.id);" class="fas fa-times-circle deleteButton"></i>
+
+    </div>
+    <p class="itemTotal">{{item.price*item.quantity | currency}} total</p>
+    <div class="shoppingCart_quantity">
+        <p ng-click="$ctrl.quantityMinus(item)"><i class="fas fa-minus"></i></p>
+        <p>{{ item.quantity}}</p>
+        <p ng-click="$ctrl.quantityPlus(item); $ctrl.changeColor($event);"><i class="fas fa-plus"></i></p>
+    </div>
+
+
     </section>
   </section>
 
@@ -44,37 +50,63 @@ const cartList = {
       <button><i class="fas fa-shopping-cart addButton"></i></button>
     </section>
   </form>
+ 
   `,
   controller: ["CartService", function(CartService) {
     const vm = this;
-    // TODO Call the StudentService to retrieve the list of the students
+    vm.grandTotal=0;
+
+    vm.getGrandTotal = () => {
+      vm.grandTotal=0;
+      for (let item of vm.cartItems){
+        vm.grandTotal += (item.price * item.quantity);
+      };
+      console.log(vm.grandTotal);
+      
+    };
+    
     CartService.getAllItems().then((response) =>{
-      console.log(response);
+      console.log(response.data);
       vm.cartItems = response.data;
+      vm.getGrandTotal();
     });
+
+    vm.quantityPlus = (item, $event) => {
+      item.quantity++;
+      vm.updateItem(item);
+      
+    };
+
+    vm.quantityMinus = (item) => {
+      console.log("quantity- working in controller");
+      if(item.quantity >0){
+      item.quantity--;
+      vm.updateItem(item);
+      };
+    };
+
     vm.addItem = (newItem) => {
       console.log("add button working");
       CartService.addItem(newItem).then((response) =>{
         vm.cartItems = response.data;
         console.log(vm.cartItems);
+        vm.newItem = {};
       });
+      vm.getGrandTotal();
     };
 
-    vm.deleteItem = (id) => {
-      console.log("delete button working");
-      console.log(id);
-      
+    vm.deleteItem = (id) => {    
       CartService.deleteItem(id).then((response) =>{
         vm.cartItems = response.data;
         console.log(vm.cartItems);
       });
+      vm.getGrandTotal();
     };
 
     vm.updateItem = (item) => {
-      console.log("delete button working");
       CartService.updateItem(item).then((response) =>{
         vm.cartItems = response.data;
-        console.log(vm.cartItems);
+        vm.getGrandTotal();
       });
     };
   }]

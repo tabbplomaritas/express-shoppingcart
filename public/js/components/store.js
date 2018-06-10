@@ -1,16 +1,28 @@
 "use strict";
-console.log("whyyyyyy");
-
-
 const myStore = {
   template: `
-    <h1>WORK DAMN IT</h1>
+<section class="store">
+  <div ng-repeat="item in $ctrl.store">
+    <img src={{item.url}}>
+    <h4>{{item.product}}</h4>
+    <p>{{item.price}}</p>
+    <p>+</p>
+  
+  </div>
+
+</section>
+    
   `,
 
-  controller: function(){
-    console.log("store function doing a thing");
-  
-  }
+  controller: ["StoreService", function(StoreService){
+    const vm = this;
+
+    StoreService.getStoreItems().then((response)=>{
+      vm.store = response.data;
+      console.log(vm.store);
+      
+    })
+  }]
 };
 
 

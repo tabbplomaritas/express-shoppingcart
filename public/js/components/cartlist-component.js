@@ -2,9 +2,10 @@
 const cartList = {
   // TODO: Create a template to display all the students from this class
   template: `
- <my-store></my-store>
+
   <section class="shoppingCart">
   <h2 class="sectionHeader">My cart</h2>
+  <a class="grandTotal" href="#!/store">Back to store</a>
   <p class="grandTotal">Grand Total: {{$ctrl.grandTotal |currency}}</p>
     <section class="shoppingCart__item"ng-repeat="item in $ctrl.cartItems">
     <div class="shoppingCart_product">

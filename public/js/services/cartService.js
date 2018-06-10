@@ -8,7 +8,7 @@ function CartService($http) {
       url: "/portal/cart-items"
     });
   };
-
+  
   const addItem = (newItem) =>{
     console.log("addItem in Service working");
     

@@ -1,6 +1,3 @@
-// Start your server out with a hard-coded array of cart items, each including id, product,
-// price, and quantity
-
 "use strict";
 
 const express = require("express");
@@ -42,8 +39,4 @@ cartRouter.put("/cart-items/:id", (req, res) =>{
   });
 });
 
-
-
 module.exports = cartRouter;
-
-// Export the Router object

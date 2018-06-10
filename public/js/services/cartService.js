@@ -8,7 +8,14 @@ function CartService($http) {
       url: "/portal/cart-items"
     });
   };
-  
+
+  const getGrandTotal = () =>{
+    return $http({
+      method: "GET",
+      url: "/portal/grandtotal"
+    });
+  };
+
   const addItem = (newItem) =>{
     console.log("addItem in Service working");
     
@@ -28,9 +35,7 @@ function CartService($http) {
     });
   };
 
-  const updateItem = (item) =>{
-    console.log("updateItem in Service working");
-    
+  const updateItem = (item) =>{ 
     return $http({
       method: "PUT",
       url: "/portal/cart-items/" + item.id, 
@@ -38,11 +43,14 @@ function CartService($http) {
     });
   };
 
+
+
   return {
     getAllItems,
     addItem,
     deleteItem, 
-    updateItem
+    updateItem, 
+    getGrandTotal
   };
 };
   

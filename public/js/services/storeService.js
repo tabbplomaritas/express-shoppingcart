@@ -9,8 +9,19 @@ const getStoreItems = () => {
   });
 };
 
+const addToCart = (item) => {
+  console.log(item);
+  
+  return $http({
+    method: "POST",
+    url: "/portal/store", 
+    data: item
+  })
+}
+
   return {
-    getStoreItems
+    getStoreItems, 
+    addToCart
   };
 }
 

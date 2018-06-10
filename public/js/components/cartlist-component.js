@@ -5,21 +5,21 @@ const cartList = {
 
   <section class="shoppingCart">
   <h2 class="sectionHeader">My cart</h2>
-  <a class="grandTotal" href="#!/store">Back to store</a>
-  <p class="grandTotal">Grand Total: {{$ctrl.grandTotal |currency}}</p>
-    <section class="shoppingCart__item"ng-repeat="item in $ctrl.cartItems">
-    <div class="shoppingCart_product">
-      <img class="shoppingCart_img" src="{{item.img_url}}">
-      <div class="shoppingCart__item__line">
-        <p>{{item.product}}</p>    
-        <p>{{item.price | currency}} each</p>
-        
+  <a class="grandTotal" href="#!/store">&#x219C Back to store</a>
+  <p class="grandTotal" ng-model="$ctrl.grandTotal">Grand Total: {{$ctrl.grandTotal}}</p>
+    <section class="item"ng-repeat="item in $ctrl.cartItems">
+   
+     <div class="item__product">
+        <img class="img_small" src="{{item.url}}">
+        <div class="item__line">
+          <p>{{item.product}}</p>    
+          <p>{{item.price}} each</p>
       </div>
 
-      <i ng-click="$ctrl.deleteItem(item.id);" class="fas fa-times-circle deleteButton"></i>
+      <i ng-click="$ctrl.deleteItem(item.id);" class="fas fa-times-circle button_delete"></i>
 
     </div>
-    <p class="itemTotal">{{item.price*item.quantity | currency}} total</p>
+    <p class="itemTotal">{{ item.item_total }} total</p>
     <div class="shoppingCart_quantity">
         <p ng-click="$ctrl.quantityMinus(item)"><i class="fas fa-minus"></i></p>
         <p>{{ item.quantity}}</p>
@@ -55,19 +55,18 @@ const cartList = {
   `,
   controller: ["CartService", function(CartService) {
     const vm = this;
-    vm.grandTotal=0;
+    // vm.grandTotal=0;
 
-    vm.getGrandTotal = () => {
-      vm.grandTotal=0;
-      for (let item of vm.cartItems){
-        vm.grandTotal += (item.price * item.quantity);
-      };
+  vm.getGrandTotal =() => {
+      vm.grandTotal = CartService.getGrandTotal().then((response) =>{
+      vm.grandTotal=response.data;
       console.log(vm.grandTotal);
-      
-    };
+    });
+  };
     
     CartService.getAllItems().then((response) =>{
       console.log(response.data);
+      vm.num = response.data[0];
       vm.cartItems = response.data;
       vm.getGrandTotal();
     });
@@ -75,11 +74,10 @@ const cartList = {
     vm.quantityPlus = (item, $event) => {
       item.quantity++;
       vm.updateItem(item);
-      
+      // vm.getGrandTotal();
     };
 
     vm.quantityMinus = (item) => {
-      console.log("quantity- working in controller");
       if(item.quantity >0){
       item.quantity--;
       vm.updateItem(item);
@@ -98,6 +96,8 @@ const cartList = {
 
     vm.deleteItem = (id) => {    
       CartService.deleteItem(id).then((response) =>{
+        console.log("delete item button");
+        
         vm.cartItems = response.data;
         console.log(vm.cartItems);
       });

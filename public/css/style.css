@@ -67,7 +67,14 @@ justify-content: space-between; */
   align-self: flex-end;
 }
 
-.shoppingCart {
+.fa-shopping-cart {
+  width: 100%;
+    text-align: right;
+    font-size: 2rem;
+    color: #FFA000;
+}
+
+.shoppingCart, .store {
   padding: 1rem;
   margin: 0 auto;
   height: auto;
@@ -81,7 +88,22 @@ justify-content: space-between; */
   background-size: cover; 
 }
 
-.shoppingCart__item{
+.store {
+  background: linear-gradient(#009687cc,rgba(255, 193, 7, 0.726)), url(../images/mixedproduceVert.jpg) no-repeat top;
+  height: 100vh;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+
+.store .item {
+  width: 20rem;
+  margin: 1rem;
+  height: 20rem;
+}
+
+.item{
   background-color: rgba(255, 255, 255, 0.918);
   padding: 1rem;
   margin: 1rem auto;
@@ -97,7 +119,7 @@ justify-content: space-between; */
   -moz-box-shadow: 0px 10px 42px -7px rgba(117,117,117,1);
   box-shadow: 0px 10px 42px -7px rgba(117,117,117,1)
 }
-.shoppingCart__item__line {
+.item__line {
   padding: .2rem;
   height: 3rem;
   width: 80%;
@@ -111,7 +133,7 @@ justify-content: space-between; */
   /* background-color: rgba(255, 255, 255, 0.3); */
 }
 
-.shoppingCart__item__line p:first-of-type{
+.item__line p:first-of-type{
   text-align: left;
 }
 
@@ -173,7 +195,7 @@ font-family: 'Open Sans', sans-serif;
   cursor: pointer;
 }
 
-.deleteButton {
+.button_delete {
   position: absolute;
   top: -1.5rem;
   right: -1.5rem;
@@ -182,10 +204,12 @@ font-family: 'Open Sans', sans-serif;
   transition: .3s all;
 }
 
-.deleteButton:hover {
+.button_delete:hover {
   color: red;
   transform: rotate(180deg);
 }
+
+.addToCart
 
 .addItemForm {
   display: flex;
@@ -230,20 +254,40 @@ input:focus {
   text-shadow: 1px 1px 3px #212121;
   }
   
-.shoppingCart_product {
+.item__product {
   width: 100%;
   display: flex;
   flex-direction: row;
   justify-content: space-around;
   align-items: center;
-
 }
 
+.store__product {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+.store__product .item__line {
+  flex-direction: column;
+  height: auto;
+  align-items: flex-end;
+}
 
-.shoppingCart_img {
+.img_med {
+  margin-top: 1rem;
+  width: 8rem;
+  height: 100%;
+  min-height: 8rem;
+}
+
+.img_small {
   width: 4rem;
   height: 100%;
+  min-height: 4rem;
 }
+
 
 
 .dark-primary-color    { background: #FFA000; }

@@ -12,14 +12,17 @@ const cartList = {
      <div class="item__product">
         <img class="img_small" src="{{item.url}}">
         <div class="item__line">
-          <p>{{item.product}}</p>    
-          <p>{{item.price}} each</p>
-      </div>
+          <p>{{item.product}}</p>   
+          <div>
+            <p>{{item.price}} each</p>
+            <p class="itemTotal">{{ item.item_total }} total</p>
+          </div> 
+        </div>
 
       <i ng-click="$ctrl.deleteItem(item.id);" class="fas fa-times-circle button_delete"></i>
 
     </div>
-    <p class="itemTotal">{{ item.item_total }} total</p>
+
     <div class="shoppingCart_quantity">
         <p ng-click="$ctrl.quantityMinus(item)"><i class="fas fa-minus"></i></p>
         <p>{{ item.quantity}}</p>
@@ -28,29 +31,7 @@ const cartList = {
 
 
     </section>
-  </section>
-
-  <form class="addItemForm dark-primary-color" ng-submit="$ctrl.addItem($ctrl.newItem);">
-    <h2 class="sectionHeader">Add Item</h2>
-    <section class="shoppingCart__item">
-
-    <div class="addItem__line">
-      <label>Product: </label>
-      <input ng-model="$ctrl.newItem.product">
-     </div>   
-
-    <div class="addItem__line">
-      <label>Price: </label> 
-      <input ng-model="$ctrl.newItem.price">
-    </div> 
-
-    <div class="addItem__line">
-      <label>Quantity: </label> 
-      <input ng-model="$ctrl.newItem.quantity">
-    </div>
-      <button><i class="fas fa-shopping-cart addButton"></i></button>
-    </section>
-  </form>
+  </section>  
  
   `,
   controller: ["CartService", function(CartService) {

@@ -10,4 +10,7 @@ angular
       .when("/store", {
         template: `<my-store></my-store>`
       })
+      .otherwise({
+        redirectTo: "/store"
+      });
   });

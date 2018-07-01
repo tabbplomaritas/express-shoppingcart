@@ -18,9 +18,6 @@ cartRouter.get("/grandtotal", (req, res) => {
 });
 });
 
-
-
-
 cartRouter.post("/cart-items", (req, res) =>{
   pool.query("INSERT INTO shopping_cart(product, quantity, price) VALUES($1::text, $2::int, $3::int)", [req.body.product, req.body.price, req.body.quantity]).then(() => {
     pool.query("SELECT * FROM shopping_cart ORDER BY id").then((result) => {

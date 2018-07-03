@@ -1,0 +1,5 @@
+{
+"name": "Fresh Express", 
+"description": "A shopping application built with AngularJS, Node.js, Express, and PostgreSQL", 
+"image": "heroku/nodejs" 
+}

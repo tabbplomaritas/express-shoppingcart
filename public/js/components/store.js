@@ -3,7 +3,7 @@ const myStore = {
   template: `
   <div class="sectionHeader" id="storeHeader">
     <a href="#!/cartlist"><i class="fas fa-shopping-cart"> View Cart</i> </a>
-    <p class="total" >Grand Total: $$</p>
+    <p class="total" >Grand Total:</p>
   </div>
   
   <section class="store">

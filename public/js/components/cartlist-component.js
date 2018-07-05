@@ -65,15 +65,16 @@ const cartList = {
       };
     };
 
-    vm.addItem = (newItem) => {
-      console.log("add button working");
-      CartService.addItem(newItem).then((response) =>{
-        vm.cartItems = response.data;
-        console.log(vm.cartItems);
-        vm.newItem = {};
-      });
-      vm.getGrandTotal();
-    };
+    // TODO: I don't need this now that i'm not using a form i believe?
+    // vm.addItem = (newItem) => {
+    //   console.log("add button working");
+    //   CartService.addItem(newItem).then((response) =>{
+    //     vm.cartItems = response.data;
+    //     console.log(vm.cartItems);
+    //     vm.newItem = {};
+    //   });
+    //   vm.getGrandTotal();
+    // };
 
     vm.deleteItem = (id) => {    
       CartService.deleteItem(id).then((response) =>{

@@ -43,6 +43,11 @@ nav {
   box-shadow: 0px 10px 42px -7px rgba(117,117,117,1);
 }
 
+nav h2 {
+  font-size: 1.6rem;
+  font-weight: 300;
+}
+
 cart-list {
 width: 100%;
 height: auto;

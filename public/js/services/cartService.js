@@ -16,16 +16,6 @@ function CartService($http) {
     });
   };
 
-  const addItem = (newItem) =>{
-    console.log("addItem in Service working");
-    
-    return $http({
-      method: "POST",
-      url: "/portal/cart-items",
-      data: newItem
-    });
-  };
-
   const deleteItem = (id) =>{
     console.log("deleteItem in Service working");
     
@@ -47,7 +37,6 @@ function CartService($http) {
 
   return {
     getAllItems,
-    addItem,
     deleteItem, 
     updateItem, 
     getGrandTotal

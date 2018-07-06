@@ -19,10 +19,19 @@ storeRouter.post("/store", (req, res) => {
       pool.query("SELECT * FROM store ORDER BY id").then((result) => {
       console.log(result.rows);
       res.send(result.rows);
-  });
-
-})
+    });
   })
+  })
+});
+
+storeRouter.get("/grandtotal", (req, res) => {
+  console.log("get grand total 1");
+  
+    pool.query("SELECT SUM(price * quantity) FROM shopping_cart;").then((result)=> {
+      console.log(result.rows[0].sum);
+      res.send(result.rows[0].sum);
+  });
+  console.log("get grand total 1");
 });
 
 module.exports = storeRouter;

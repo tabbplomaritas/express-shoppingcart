@@ -3,7 +3,7 @@ const myStore = {
   template: `
   <div class="sectionHeader" id="storeHeader">
     <a href="#!/cartlist"><i class="fas fa-shopping-cart"> View Cart</i> </a>
-    <p class="total" >Grand Total:</p>
+    <p class="total" >Grand Total: {{ $ctrl.total }}</p>
   </div>
   
   <section class="store">
@@ -29,7 +29,7 @@ const myStore = {
 
   controller: ["StoreService", "$timeout", function(StoreService, $timeout){
     const vm = this;
- 
+
 
     StoreService.getStoreItems().then((response)=>{
       vm.store = response.data;
@@ -44,6 +44,12 @@ const myStore = {
         console.log(response);
         });
     };
+
+    StoreService.getGrandTotal().then((response) => {
+      vm.total =  response.data;
+    });
+    console.log(vm.total);
+    
   }]
 };
 

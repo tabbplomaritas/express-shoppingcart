@@ -19,9 +19,18 @@ const addToCart = (item) => {
   })
 }
 
+
+const getGrandTotal = () =>{
+  return $http({
+    method: "GET",
+    url: "/portal/grandtotal"
+  });
+};
+
   return {
     getStoreItems, 
-    addToCart
+    addToCart,
+    getGrandTotal
   };
 }
 

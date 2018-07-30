@@ -29,16 +29,28 @@ const myStore = {
 
   controller: ["StoreService", "$timeout", function(StoreService, $timeout){
     const vm = this;
+    vm.firstLoad = StoreService.isFirstLoad();
 
+    if(vm.firstLoad){
+      console.log("cart cleared");
+    StoreService.clearCart();
+    StoreService.cartNowCleared();
+    }
 
     StoreService.getStoreItems().then((response)=>{
       vm.store = response.data;
       console.log(vm.store);
-   
     });
 
-    vm.addToCart = (item, $event) => { 
-      console.log($event.currentTarget);  
+    StoreService.getGrandTotal().then((response) => {
+      console.log("get grand total in component running");
+      vm.total =  response.data;
+    });  
+
+
+
+
+    vm.addToCart = (item, $event) => {  
       let added = $event.currentTarget;
       console.log(added);
       
@@ -50,13 +62,21 @@ const myStore = {
       StoreService.addToCart(item).then((response) => {
         console.log(response);
         });
-    };
 
+        $timeout(function () {
+          StoreService.getGrandTotal().then((response) => {
+            console.log("get grand total in component running");
+            vm.total =  response.data;
+          });  
+      }, 500);
+
+              
+
+    };
     StoreService.getGrandTotal().then((response) => {
+      console.log("get grand total in component running");
       vm.total =  response.data;
     });
-    console.log(vm.total);
-    
   }]
 };
 

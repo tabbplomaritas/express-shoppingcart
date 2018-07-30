@@ -2,6 +2,16 @@
 
 function StoreService($http){
 
+let firstLoad = true;
+
+const isFirstLoad = () => {
+  return firstLoad;
+}
+
+const cartNowCleared = () => {
+  firstLoad = false;
+}
+
 const getStoreItems = () => {
   return $http({
     method: "GET",
@@ -10,8 +20,6 @@ const getStoreItems = () => {
 };
 
 const addToCart = (item) => {
-  console.log(item);
-  
   return $http({
     method: "POST",
     url: "/portal/store", 
@@ -27,10 +35,22 @@ const getGrandTotal = () =>{
   });
 };
 
+const clearCart = () => {
+  console.log("clear cart in Service working");
+  
+  return $http({
+    method: "DELETE",
+    url: "/portal/cart-items/"
+  });
+}
+
   return {
     getStoreItems, 
     addToCart,
-    getGrandTotal
+    getGrandTotal,
+    clearCart,
+    isFirstLoad,
+    cartNowCleared
   };
 }
 

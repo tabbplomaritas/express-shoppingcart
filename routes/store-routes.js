@@ -25,13 +25,23 @@ storeRouter.post("/store", (req, res) => {
 });
 
 storeRouter.get("/grandtotal", (req, res) => {
-  console.log("get grand total 1");
-  
     pool.query("SELECT SUM(price * quantity) FROM shopping_cart;").then((result)=> {
       console.log(result.rows[0].sum);
       res.send(result.rows[0].sum);
   });
-  console.log("get grand total 1");
+  console.log("get grand total at store");
 });
+
+
+storeRouter.delete("/cart-items/", (req, res) => {
+  console.log("clear cart on routes");  
+  pool.query("DELETE FROM shopping_cart")
+  .then(() => {
+    pool.query("SELECT * FROM shopping_cart ORDER BY id").then((result) => {
+      res.send(result.rows);
+    });
+  });
+});
+
 
 module.exports = storeRouter;

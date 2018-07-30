@@ -36,9 +36,11 @@ const cartList = {
   `,
   controller: ["CartService", function(CartService) {
     const vm = this;
-    // vm.grandTotal=0;
+    vm.grandTotal=0;
 
-  vm.getGrandTotal =() => {
+ 
+
+  vm.getGrandTotal = () => {
       vm.grandTotal = CartService.getGrandTotal().then((response) =>{
       vm.grandTotal=response.data;
       console.log(vm.grandTotal);

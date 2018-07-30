@@ -15,17 +15,9 @@ cartRouter.get("/grandtotal", (req, res) => {
   pool.query("SELECT SUM(price * quantity) FROM shopping_cart;").then((result)=> {
     console.log(result.rows[0].sum);
     res.send(result.rows[0].sum);
-});
+  });
 });
 
-// cartRouter.post("/cart-items", (req, res) =>{
-//   pool.query("INSERT INTO shopping_cart(product, quantity, price) VALUES($1::text, $2::int, $3::int)", [req.body.product, req.body.price, req.body.quantity]).then(() => {
-//     pool.query("SELECT * FROM shopping_cart ORDER BY id").then((result) => {
-//       console.log(result.rows);
-//       res.send(result.rows);
-//     });
-//   });
-// });
 
 cartRouter.delete("/cart-items/:id", (req, res) => {
   pool.query("DELETE FROM shopping_cart WHERE id=$1::int", [req.params.id])

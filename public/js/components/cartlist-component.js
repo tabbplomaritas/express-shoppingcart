@@ -1,6 +1,6 @@
 "use strict";
 const cartList = {
-  // TODO: Create a template to display all the students from this class
+  
   template: `
 
   <section class="shoppingCart">

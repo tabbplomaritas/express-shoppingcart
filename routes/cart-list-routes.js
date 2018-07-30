@@ -44,9 +44,7 @@ cartRouter.put("/cart-items/:id", (req, res) =>{
       pool.query("SELECT * FROM shopping_cart ORDER BY id").then((result) => {
         console.log(result.rows);
         res.send(result.rows);
-
-    })
-
+      })
     });
   });
 });

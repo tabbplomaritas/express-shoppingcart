@@ -74,6 +74,7 @@ padding: 1rem;
   color: #009688;
   font-size: 2rem;
   font-style: normal;
+  padding-bottom: .5rem;
 }
 
 .grandTotal {
@@ -167,8 +168,6 @@ padding: 1rem;
   color: #FFA000;
 }
 
-
-
 .shoppingCart_quantity{
 display: flex;
 flex-direction: row;
@@ -199,7 +198,7 @@ font-family: 'Open Sans', sans-serif;
 .shoppingCart_quantity p:nth-of-type(2) {
   border-radius: 2rem;;
   width: 7rem;
-  background: linear-gradient(to right, #009687e3, rgba(255, 162, 0, 0.815))
+  background-color: #009687e3;
 }
 
 .shoppingCart_quantity p:not(:nth-of-type(2)):hover {
@@ -238,6 +237,14 @@ font-family: 'Open Sans', sans-serif;
   transition: .3s all;
   text-shadow: 1px 1px 3px #212121;
   }
+
+.added {
+  background-color: #009688;
+  color: white;
+  text-transform: uppercase;
+  font-weight: 700;
+  letter-spacing: 1px;
+}
   
 .item__product {
   width: 100%;

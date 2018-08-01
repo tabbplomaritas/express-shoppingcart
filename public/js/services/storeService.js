@@ -14,7 +14,7 @@ const cartNowCleared = () => {
   firstLoad = false;
 }
 
-const getStoreItems = () => {
+const setStoreItems = () => {
   return $http({
     method: "GET",
     url: "/portal/store"
@@ -27,21 +27,19 @@ const getStoreItems = () => {
   })
 };
 
-// const getStoreItems = () => {
-//   return store;
-// }
+
+const getStoreItems = () => {
+  return store;
+}
 
 
 
 const addToCart = (item) => {
-  console.log(item.id);
-  for(let el of store) {
-    if(el.id = item.id){
-      el.added = true;
+  for(let product of store) {
+    if(product.id === item.id){
+      product.added = true;
     }
   }
-
-  console.log(store);
 
   return $http({
     method: "POST",
@@ -68,7 +66,7 @@ const clearCart = () => {
 }
 
   return {
-
+    setStoreItems,
     getStoreItems,
     addToCart,
     getGrandTotal,

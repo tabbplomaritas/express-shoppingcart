@@ -13,7 +13,6 @@ cartRouter.get("/cart-items", (req, res) =>{
 
 cartRouter.get("/grandtotal", (req, res) => {
   pool.query("SELECT SUM(price * quantity) FROM shopping_cart;").then((result)=> {
-    console.log(result.rows[0].sum);
     res.send(result.rows[0].sum);
   });
 });
@@ -30,11 +29,10 @@ cartRouter.delete("/cart-items/:id", (req, res) => {
 
 
 cartRouter.put("/cart-items/:id", (req, res) =>{
-  pool.query("UPDATE shopping_cart SET product=$1::text, price=$2::money, quantity=$3::int, WHERE id=$4::int",[req.body.product, req.body.price, req.body.quantity, req.params.id]).then(() => {
+  pool.query("UPDATE shopping_cart SET product=$1::text, price=$2::money, quantity=$3::int WHERE id=$4::int",[req.body.product, req.body.price, req.body.quantity, req.params.id]).then(() => {
     pool.query("UPDATE shopping_cart SET item_total = quantity*price;").then(()=>{
 
       pool.query("SELECT * FROM shopping_cart ORDER BY id").then((result) => {
-        console.log(result.rows);
         res.send(result.rows);
       })
     });

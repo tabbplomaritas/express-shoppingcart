@@ -102,8 +102,8 @@ padding: 1rem;
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  background: linear-gradient(rgba(255, 193, 7, 0.726),#009687cc), url("../images/lemons.jpg") no-repeat top; 
-  background-size: cover; 
+  background: linear-gradient(rgba(255, 193, 7, 0.726),#009687cc), url("../images/lemons.jpg") no-repeat top;
+  background-size: cover;
 }
 
 .store {
@@ -244,8 +244,9 @@ font-family: 'Open Sans', sans-serif;
   text-transform: uppercase;
   font-weight: 700;
   letter-spacing: 1px;
+  font-size: 4rem;
 }
-  
+
 .item__product {
   width: 100%;
   display: flex;

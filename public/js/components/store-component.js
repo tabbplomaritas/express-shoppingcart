@@ -5,9 +5,9 @@ const myStore = {
     <a href="#!/cartlist"><i class="fas fa-shopping-cart"> View Cart</i> </a>
     <p class="total" >Grand Total: {{ $ctrl.total }}</p>
   </div>
-  
+
   <section class="store">
-    
+
 
     <div class="item" ng-repeat="item in $ctrl.store">
       <div class="store__product">
@@ -17,19 +17,20 @@ const myStore = {
         </div>
         <img class="img_med" src={{item.url}}>
       </div>
-        <div ng-click="$ctrl.addToCart(item, $event);" class="store__product_add">
+        <div ng-class="{ 'added': item.added }" ng-click="$ctrl.addToCart(item, $event);" class="store__product_add">
           <i class="fas fa-shopping-bag"></i>
           <p >Add to Cart</p>
-        
+
         </div>
     </div>
   </section>
-    
+
   `,
 
   controller: ["StoreService", "$timeout", function(StoreService, $timeout){
     const vm = this;
     vm.firstLoad = StoreService.isFirstLoad();
+    vm.store;
 
     if(vm.firstLoad){
       console.log("cart cleared");
@@ -38,22 +39,27 @@ const myStore = {
     }
 
     StoreService.getStoreItems().then((response)=>{
-      vm.store = response.data;
+      vm.store = response;
       console.log(vm.store);
+
     });
 
     StoreService.getGrandTotal().then((response) => {
-      console.log("get grand total in component running");
       vm.total =  response.data;
-    });  
+    });
 
 
 
 
-    vm.addToCart = (item, $event) => {  
+    vm.addToCart = (item, $event) => {
       let added = $event.currentTarget;
-      console.log(added);
-      
+      if(item.added == true){
+        //update the quantity in the cart
+        //update grand total
+        //end function
+      }
+      //else if not added, add to cart.
+
       angular.element(added).html('<i class="fas fa-check-circle"></i> Added!');
       angular.element(added).addClass("added");
       angular.element(added).addClass("animated zoomIn");
@@ -65,16 +71,12 @@ const myStore = {
 
         $timeout(function () {
           StoreService.getGrandTotal().then((response) => {
-            console.log("get grand total in component running");
             vm.total =  response.data;
-          });  
+          });
       }, 500);
-
-              
-
     };
+
     StoreService.getGrandTotal().then((response) => {
-      console.log("get grand total in component running");
       vm.total =  response.data;
     });
   }]

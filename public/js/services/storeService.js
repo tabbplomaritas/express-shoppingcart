@@ -65,6 +65,41 @@ const clearCart = () => {
   });
 }
 
+//cart service carried over: 
+const getAllItems = () =>{
+  return $http({
+    method: "GET",
+    url: "/portal/cart-items"
+  });
+};
+
+
+const deleteItem = (id) =>{
+console.log(id);
+
+  for(let product of store) {
+    if(product.id == id){
+      product.added = false;
+    }
+  }
+
+  console.log(store);
+  
+
+  return $http({
+    method: "DELETE",
+    url: "/portal/cart-items/" + id
+  });
+};
+
+const updateItem = (item) =>{
+  return $http({
+    method: "PUT",
+    url: "/portal/cart-items/" + item.id,
+    data: item
+  });
+};
+
   return {
     setStoreItems,
     getStoreItems,
@@ -72,7 +107,10 @@ const clearCart = () => {
     getGrandTotal,
     clearCart,
     isFirstLoad,
-    cartNowCleared
+    cartNowCleared, 
+    getAllItems,
+    updateItem,
+    deleteItem
   };
 }
 

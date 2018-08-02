@@ -17,6 +17,7 @@ function CartService($http) {
   };
 
   const deleteItem = (id) =>{
+
     return $http({
       method: "DELETE",
       url: "/portal/cart-items/" + id

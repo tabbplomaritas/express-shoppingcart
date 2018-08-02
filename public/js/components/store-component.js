@@ -2,8 +2,8 @@
 const myStore = {
   template: `
   <div class="sectionHeader" id="storeHeader">
-    <a href="#!/cartlist"><i class="fas fa-shopping-cart"> View Cart</i> </a>
-    <p class="total" >Grand Total: {{ $ctrl.total }}</p>
+    <a class="headerButton" href="#!/cartlist"><i class="fas fa-shopping-cart"> View Cart</i> </a>
+    <p class="total" >Your Total: {{ $ctrl.total || "$0" }}</p>
   </div>
 
   <section class="store">
@@ -17,7 +17,7 @@ const myStore = {
         </div>
         <img class="img_med" src={{item.url}}>
       </div>
-        <div ng-class="{ 'added': item.added == true }" ng-click="$ctrl.addToCart(item, $event);" class="store__product_add">
+        <div ng-class="{ 'added animated zoomIn': item.added === true }" ng-click="$ctrl.addToCart(item, $event);" class="store__product_add">
           <i class="fas fa-shopping-bag"></i>
           <p >Add to Cart</p>
         </div>

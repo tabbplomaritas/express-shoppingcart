@@ -1,7 +1,10 @@
 <section class="shoppingCart">
   <h2 class="sectionHeader">My cart</h2>
-  <a class="grandTotal" href="#!/store">&#x219C Back to store</a>
-  <p class="grandTotal" ng-model="$ctrl.grandTotal">Grand Total: {{$ctrl.grandTotal}}</p>
+ 
+    <a class="grandTotal" href="#!/store">&#x219C Back to store</a>
+    <p class="grandTotal" ng-model="$ctrl.grandTotal">Your Total: {{$ctrl.grandTotal || "$0"}}</p>
+
+
     <section class="item"ng-repeat="item in $ctrl.cartItems">
 
      <div class="item__product">
